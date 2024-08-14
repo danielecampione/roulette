@@ -43,6 +43,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    transform: rotate(-9deg); /* Rotazione per allineare i numeri */
 }
 
 .number {
@@ -52,12 +53,19 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background-color: #e74c3c;
     color: #ecf0f1;
     margin: 5px;
     font-size: 14px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s;
+}
+
+.number.red {
+    background-color: #e74c3c;
+}
+
+.number.black {
+    background-color: #34495e;
 }
 
 .number:hover {
