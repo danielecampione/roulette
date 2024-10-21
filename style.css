@@ -20,7 +20,7 @@ body {
     border: 15px solid #34495e;
     border-radius: 50%;
     margin: 0 auto;
-    background: radial-gradient(circle, #c0392b, #e74c3c);
+    background: radial-gradient(circle, #27ae60, #2ecc71); /* Sfumatura di verde rilassante */
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
 }
 
@@ -107,17 +107,19 @@ button:hover {
 #result {
     margin-top: 20px;
     padding: 10px;
-    background-color: #2ecc71;
+    background-color: #34495e; /* Sfondo nero di base */
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     font-size: 18px;
-    animation: pulse 2s; /* Aggiungiamo l'animazione per 2 secondi */
 }
 
-@keyframes pulse {
-    0% { background-color: #2ecc71; }
-    50% { background-color: #27ae60; }
-    100% { background-color: #2ecc71; }
+.flash-green {
+    animation: flash 2s; /* Aggiungiamo l'animazione flash */
+}
+
+@keyframes flash {
+    0%, 100% { background-color: #34495e; } /* Colore di base */
+    50% { background-color: #2ecc71; } /* Colore verde */
 }
 
 /* Posizionamento dei numeri lungo la circonferenza nell'ordine corretto della roulette europea */

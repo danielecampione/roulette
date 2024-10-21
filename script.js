@@ -15,6 +15,9 @@ document.getElementById('spinButton').addEventListener('click', function() {
     ball.style.top = `${rect.top - wheelRect.top + rect.height / 2}px`;
     ball.style.left = `${rect.left - wheelRect.left + rect.width / 2}px`;
 
+    // Aggiungi la classe per l'animazione della ruota
+    wheel.classList.add('spinning');
+    
     // Determina il colore, la parità e l'intervallo del numero estratto
     let color, parity, range;
     if (selectedNumber == 0) {
@@ -27,20 +30,13 @@ document.getElementById('spinButton').addEventListener('click', function() {
         range = selectedNumber <= 18 ? 'basso' : 'alto';
     }
 
-    // Mostra il risultato con animazione della label
+    // Mostra il risultato dopo l'animazione
     setTimeout(function() {
         result.textContent = `Numero estratto: ${selectedNumber} (${color}, ${parity}, ${range})`;
-        result.classList.add('pulse'); // Aggiungi l'animazione alla label
+        result.classList.add('flash-green'); // Aggiungi l'animazione alla label
         setTimeout(function() {
-            result.classList.remove('pulse'); // Rimuovi l'animazione dopo 2 secondi
+            result.classList.remove('flash-green'); // Rimuovi l'animazione dopo 2 secondi
         }, 2000);
+        wheel.classList.remove('spinning'); // Ferma la ruota
     }, 2000); // Durata dell'animazione di 2 secondi
-
-    // Aggiungi l'effetto di animazione alla ruota dopo il posizionamento della pallina
-    setTimeout(function() {
-        wheel.classList.add('spinning');
-        setTimeout(function() {
-            wheel.classList.remove('spinning'); // Ferma la ruota
-        }, 2000); // Durata dell'animazione di 2 secondi
-    }, 100); // Breve ritardo per assicurare il posizionamento della pallina
 });
