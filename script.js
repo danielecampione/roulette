@@ -2,19 +2,16 @@ document.getElementById('spinButton').addEventListener('click', function() {
     const numbers = document.querySelectorAll('.number');
     const ball = document.getElementById('ball');
     const result = document.getElementById('result');
-    
-    // Aggiungi la classe per l'animazione
-    result.classList.add('spinning');
+    const wheel = document.querySelector('.roulette-wheel');
     
     // Genera un numero casuale tra 0 e 36
     const randomIndex = Math.floor(Math.random() * numbers.length);
     const selectedNumber = numbers[randomIndex].dataset.number;
-
+    
     // Posiziona la pallina sul numero estratto
     const selectedElement = numbers[randomIndex];
     const rect = selectedElement.getBoundingClientRect();
-    const wheelRect = document.querySelector('.roulette-wheel').getBoundingClientRect();
-
+    const wheelRect = wheel.getBoundingClientRect();
     ball.style.top = `${rect.top - wheelRect.top + rect.height / 2}px`;
     ball.style.left = `${rect.left - wheelRect.left + rect.width / 2}px`;
 
@@ -30,9 +27,20 @@ document.getElementById('spinButton').addEventListener('click', function() {
         range = selectedNumber <= 18 ? 'basso' : 'alto';
     }
 
-    // Mostra il risultato dopo l'animazione
+    // Mostra il risultato con animazione della label
     setTimeout(function() {
         result.textContent = `Numero estratto: ${selectedNumber} (${color}, ${parity}, ${range})`;
-        result.classList.remove('spinning'); // Rimuovi la classe dopo l'animazione
-    }, 1000); // Durata dell'animazione di un secondo
+        result.classList.add('pulse'); // Aggiungi l'animazione alla label
+        setTimeout(function() {
+            result.classList.remove('pulse'); // Rimuovi l'animazione dopo 2 secondi
+        }, 2000);
+    }, 2000); // Durata dell'animazione di 2 secondi
+
+    // Aggiungi l'effetto di animazione alla ruota dopo il posizionamento della pallina
+    setTimeout(function() {
+        wheel.classList.add('spinning');
+        setTimeout(function() {
+            wheel.classList.remove('spinning'); // Ferma la ruota
+        }, 2000); // Durata dell'animazione di 2 secondi
+    }, 100); // Breve ritardo per assicurare il posizionamento della pallina
 });
